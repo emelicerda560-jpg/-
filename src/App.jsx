@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { ArrowDown, ArrowUpRight, Mail, Phone, Sparkles } from 'lucide-react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -22,6 +22,12 @@ const strengths = [
 
 function App() {
   const root = useRef(null)
+  const [heroReady, setHeroReady] = useState(false)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setHeroReady(true), 1800)
+    return () => window.clearTimeout(timer)
+  }, [])
 
   useLayoutEffect(() => {
     const priorityImages = root.current?.querySelectorAll('.project.model .media-grid img') ?? []
@@ -149,8 +155,8 @@ function App() {
       <a className="contact-link" href="mailto:2813834181@qq.com" aria-label="联系我"><ArrowUpRight size={18}/></a>
     </nav>
     <section className="hero" id="home">
-      <video className="hero-video" autoPlay muted loop playsInline>
-        <source src={asset('/media/hero.mp4')} type="video/mp4" />
+      <video className="hero-video" autoPlay muted loop playsInline preload="none" poster={asset('/media/hero-poster.webp')}>
+        {heroReady && <source src={asset('/media/hero.mp4')} type="video/mp4" />}
       </video>
       <div className="hero-shade" />
       <div className="hero-content shell">
