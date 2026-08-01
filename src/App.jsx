@@ -24,6 +24,22 @@ function App() {
   const root = useRef(null)
 
   useLayoutEffect(() => {
+    const priorityImages = root.current?.querySelectorAll('.project.model .media-grid img') ?? []
+
+    priorityImages.forEach((image, index) => {
+      image.decoding = 'async'
+      if (index < 3) {
+        image.loading = 'eager'
+        image.fetchPriority = 'high'
+      }
+    })
+
+    root.current?.querySelectorAll('.project video').forEach(video => {
+      video.preload = 'none'
+    })
+  }, [])
+
+  useLayoutEffect(() => {
     const mm = gsap.matchMedia()
     const ctx = gsap.context(() => {
       mm.add({ reduceMotion: '(prefers-reduced-motion: reduce)', desktop: '(min-width: 901px)' }, context => {
