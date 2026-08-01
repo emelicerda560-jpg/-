@@ -72,4 +72,64 @@ body{font-family:var(--display-sans)}.nav,.eyebrow,.cover-sub small,.hero-bottom
   .footer{min-height:calc(100svh - 24px);margin-bottom:12px}.footer-inner{width:calc(100% - 44px);padding:70px 0 30px}.footer h2{font-size:52px;line-height:.92;margin:48px 0 65px}.mail-big{font-size:16px;padding-bottom:18px;gap:10px}.mail-big svg{width:20px}.footer-meta{margin-top:60px;font-size:7px;gap:12px;flex-direction:column}
 }
 @media(max-width:900px){.project,.media-grid>*,.project-info{opacity:1!important;visibility:visible!important}.media-grid>*{clip-path:none!important;transform:none}.media-grid img{display:block;background:#eee}}
+@media screen{.project-info{order:-1}}
+
+/* Desktop-first portfolio layout */
+@media screen and (min-width:901px){
+  .shell{width:min(1700px,calc(100% - 64px))}
+  .hero{width:min(1700px,calc(100% - 48px));height:calc(100vh - 48px);min-height:720px;margin:24px auto}
+  .hero .shell{width:calc(100% - 96px)}
+  .hero h1{font-size:clamp(82px,7.5vw,144px)}
+  .cover-word{font-size:clamp(128px,14vw,250px)}
+  .about,.section-head,.projects,.strength-sheet,.footer{width:min(1700px,calc(100% - 64px))}
+  .about{padding:92px clamp(48px,5vw,88px) 84px}
+  .about .bio{max-width:1180px}
+  .about .intro{max-width:850px;font-size:14px}
+  .stats{grid-template-columns:repeat(4,1fr)!important}
+  .stats .experience{grid-column:1 / span 2!important;grid-row:2!important;padding:32px 52px 0 0!important}
+  .stats .education{grid-column:3 / span 2!important;grid-row:2!important;padding:32px 0 0 52px!important}
+  .section-head{padding:76px clamp(48px,5vw,88px) 64px}
+  .projects{margin-top:12px}
+  .project{grid-template-columns:1fr!important;padding:0 16px 16px;gap:0}
+  .project:nth-child(even){grid-template-columns:1fr!important}
+  .project:nth-child(even) .project-art{order:0}
+  .project-info{order:-1;padding:40px 32px 34px;border-top:0;align-items:flex-start;background:var(--paper)}
+  .project-info:before{margin-top:2px}
+  .project-info h3{font-size:clamp(30px,2.5vw,42px);margin:16px 0 0}
+  .project-info h3 span{font-size:16px;margin-top:10px}
+  .project-info button{width:58px;height:58px;flex:0 0 58px}
+  .project-art,.project:nth-child(2) .project-art,.project:nth-child(3) .project-art{height:clamp(820px,68vw,1080px)}
+  .strength-sheet{padding:78px clamp(48px,5vw,88px) 88px}
+  .strength-grid article{height:350px}
+  .footer{min-height:calc(100vh - 64px);margin-bottom:32px}
+}
+
+/* Portfolio PDF export */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;animation:none!important;transition:none!important}
+  html,body,#root,main{width:297mm!important;margin:0!important;background:#c9c9cb!important;overflow:visible!important}
+  .site-nav{display:none!important}
+  .section-head h2,.section-head>p,.strength-title h2,.strength-title p,.strength-grid article,.footer h2,.mail-big,.footer-meta>*{opacity:1!important;visibility:visible!important;transform:none!important;clip-path:none!important}
+  .hero,.about,.section-head,.project,.strength-sheet,.footer{box-sizing:border-box!important;width:297mm!important;height:210mm!important;min-height:210mm!important;max-height:210mm!important;margin:0!important;break-after:page!important;page-break-after:always!important;overflow:hidden!important;opacity:1!important;visibility:visible!important;transform:none!important;clip-path:none!important}
+  .hero{padding:0 18mm}.hero .shell{width:100%!important}.hero-content{height:100%!important}.hero-video{opacity:.07!important;transform:none!important}.cover-meta{top:10mm}.hero .eyebrow{top:33%}.hero h1{top:40%;font-size:66pt!important}.cover-sub{top:58%}.cover-word{font-size:118pt!important;bottom:4%!important}.hero-bottom{bottom:8mm}
+  .about{padding:12mm 18mm!important}.about-grid{padding:7mm 0 5mm!important}.about-grid>*,.stats>div{opacity:1!important;visibility:visible!important;transform:none!important;clip-path:none!important}.about .bio h2{font-size:30pt!important}.about .kicker{margin-bottom:4mm!important}.about .intro{font-size:10pt!important;line-height:1.65!important;margin:5mm 0!important;max-width:210mm!important}.bio-meta{margin-bottom:5mm!important}.contact-row{padding-top:4mm!important}.stats{grid-template-columns:repeat(4,1fr)!important;padding-top:5mm!important}.stats>div{min-height:22mm!important;padding:3mm!important}.stats strong{font-size:24pt!important}.stats .experience{grid-column:1 / span 2!important;grid-row:2!important;padding:4mm 5mm 0 0!important;margin-top:1mm!important}.stats .education{grid-column:3 / span 2!important;grid-row:2!important;padding:4mm 0 0 5mm!important;margin-top:1mm!important}.stats .experience b{font-size:11pt!important}.stats .experience p{font-size:7.5pt!important;margin:1.5mm 0!important;line-height:1.35!important}.stats .experience em{font-size:7.5pt!important;margin-top:1.5mm!important}.stats .education b{font-size:10pt!important}.stats .education small{font-size:7.5pt!important}
+  .work-section{padding:0!important;background:#c9c9cb!important}.section-head{padding:18mm!important;display:grid!important}.section-head .section-index{margin-bottom:12mm!important}.section-head h2{font-size:58pt!important}.projects{width:297mm!important;margin:0!important}.project{padding:15mm 18mm!important;grid-template-columns:1.1fr .9fr!important;gap:14mm!important}.project:nth-child(even){grid-template-columns:.9fr 1.1fr!important}.project-art,.project:nth-child(2) .project-art,.project:nth-child(3) .project-art{height:145mm!important}.project-info{align-self:center!important}.project-info h3{font-size:25pt!important}.media-grid>*,.project-info{opacity:1!important;visibility:visible!important;transform:none!important;clip-path:none!important}.project-info button{display:none!important}
+  .strength-section{padding:0!important;background:#c9c9cb!important}.strength-sheet{padding:18mm!important}.strength-title{padding:12mm 0!important}.strength-title h2{font-size:48pt!important}.strength-grid article{height:85mm!important;padding:8mm!important}.strength-grid h3{margin-top:12mm!important}
+  .footer{display:flex!important;padding:0 18mm!important}.footer-inner{width:100%!important;padding:18mm 0 10mm!important}.footer h2{font-size:70pt!important;margin:14mm 0 18mm!important}.mail-big{font-size:24pt!important}.footer-meta{margin-top:18mm!important}
+}
 @media(max-width:900px){.about-grid{display:block!important}.about .bio h2{font-size:50px}}
+
+/* Portrait A4 portfolio PDF */
+@media print{
+  @page{size:A4 portrait;margin:0}
+  html,body,#root,main{width:210mm!important}
+  .hero,.about,.section-head,.project,.strength-sheet,.footer{width:210mm!important;height:297mm!important;min-height:297mm!important;max-height:297mm!important}
+  .hero{padding:0 15mm!important}.hero h1{top:39%;font-size:50pt!important;line-height:.94!important}.cover-sub{top:54%!important}.cover-word{font-size:88pt!important;bottom:10%!important}.hero .eyebrow{top:31%!important}
+  .about{padding:14mm 15mm!important}.about-grid{padding:8mm 0 7mm!important}.about .bio h2{font-size:29pt!important}.about .intro{font-size:9.5pt!important;max-width:175mm!important}.stats{grid-template-columns:1fr 1fr!important;gap:0!important}.stats>div{min-height:26mm!important}.stats .experience{grid-column:1!important;grid-row:3!important;padding:5mm 6mm 0 0!important}.stats .education{grid-column:2!important;grid-row:3!important;padding:5mm 0 0 6mm!important}.stats .experience p{font-size:7.2pt!important}.stats .experience em,.stats .education small{font-size:7.2pt!important}
+  .section-head{padding:18mm 15mm!important;grid-template-columns:1fr!important;align-content:center!important}.section-head .section-index{position:absolute!important;top:18mm!important;left:15mm!important;width:180mm!important}.section-head h2{font-size:60pt!important;line-height:.96!important;align-self:end!important}.section-head>p{font-size:11pt!important;max-width:125mm!important;margin-top:12mm!important}
+  .projects{width:210mm!important}.project{padding:14mm 15mm!important;display:grid!important;grid-template-columns:1fr!important;grid-template-rows:190mm auto!important;gap:10mm!important}.project:nth-child(even){grid-template-columns:1fr!important}.project:nth-child(even) .project-art{order:0!important}.project-art,.project:nth-child(2) .project-art,.project:nth-child(3) .project-art{height:190mm!important}.project-info{align-self:start!important}.project-info h3{font-size:24pt!important;margin-top:5mm!important}.project-info h3 span{font-size:12pt!important}.media-grid{height:100%!important}
+  .strength-sheet{padding:16mm 15mm!important}.strength-title{padding:15mm 0 12mm!important}.strength-title h2{font-size:42pt!important;line-height:1.02!important}.strength-title p{margin-bottom:3mm!important}.strength-grid{grid-template-columns:1fr 1fr!important}.strength-grid article{height:91mm!important;padding:8mm!important}.strength-grid h3{font-size:20pt!important;margin-top:10mm!important}.strength-grid p{font-size:10pt!important;line-height:1.75!important}
+  .doodle-smile{display:none!important}
+  .footer{padding:0 15mm!important}.footer-inner{padding:24mm 0 14mm!important}.footer h2{font-size:56pt!important;line-height:.9!important;margin:30mm 0 30mm!important}.mail-big{font-size:22pt!important}.footer-meta{margin-top:28mm!important}
+}
