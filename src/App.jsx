@@ -62,14 +62,20 @@ function App() {
         gsap.utils.toArray('.project').forEach(project => {
           const media = project.querySelectorAll('.media-grid > *')
           const info = project.querySelector('.project-info')
+
+          if (!desktop) {
+            gsap.set(project, { autoAlpha: 1, y: 0 })
+            gsap.set(media, { autoAlpha: 1, y: 0, scale: 1, clipPath: 'none' })
+            gsap.set(info, { autoAlpha: 1, x: 0 })
+            return
+          }
+
           gsap.timeline({ scrollTrigger: { trigger: project, start: 'top 80%', once: true } })
             .fromTo(project, { y: 90, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.2, ease: 'power3.out' })
             .fromTo(media, { clipPath: 'inset(0 0 100% 0)', scale: 1.08 }, { clipPath: 'inset(0 0 0% 0)', scale: 1, duration: 1.15, stagger: 0.09, ease: 'power3.inOut' }, '-=0.75')
             .fromTo(info, { x: 36, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.9 }, '-=0.75')
 
-          if (desktop) {
-            gsap.fromTo(media, { yPercent: -3 }, { yPercent: 3, ease: 'none', scrollTrigger: { trigger: project, start: 'top bottom', end: 'bottom top', scrub: 1.4 } })
-          }
+          gsap.fromTo(media, { yPercent: -3 }, { yPercent: 3, ease: 'none', scrollTrigger: { trigger: project, start: 'top bottom', end: 'bottom top', scrub: 1.4 } })
         })
 
         gsap.from('.strength-grid article', {
