@@ -34,9 +34,32 @@ function App() {
       }
     })
 
-    root.current?.querySelectorAll('.project video').forEach(video => {
+    const videos = root.current?.querySelectorAll('.project video') ?? []
+    const videoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return
+
+        const video = entry.target
+        if (video.dataset.src) {
+          video.src = video.dataset.src
+          delete video.dataset.src
+          video.load()
+          video.play().catch(() => {})
+        }
+        videoObserver.unobserve(video)
+      })
+    }, { rootMargin: '400px 0px' })
+
+    videos.forEach(video => {
+      video.dataset.src = video.currentSrc || video.src
+      video.removeAttribute('src')
+      video.autoplay = false
       video.preload = 'none'
+      video.load()
+      videoObserver.observe(video)
     })
+
+    return () => videoObserver.disconnect()
   }, [])
 
   useLayoutEffect(() => {
